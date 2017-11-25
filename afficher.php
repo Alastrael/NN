@@ -27,7 +27,7 @@
         $data = $execRequete->fetch();
 
         foreach ($data as $valeur) {
-            echo "".$valeur;
+            echo "<a class='list-group-item list-group-item-action'>".$valeur."</a>";
         }
 
 

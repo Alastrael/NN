@@ -80,7 +80,7 @@
             <div id="formations">
 
                 <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">
+                        
 
                             <?php      
                             
@@ -88,13 +88,7 @@
                             
                             ?>
                             
-                        </a>
-
-
-                        <a href="#" class="list-group-item list-group-item-action">Nom_formation_sql</a>
-                        <a href="#" class="list-group-item list-group-item-action">Nom_formation_sql</a>
-                        <a href="#" class="list-group-item list-group-item-action">Nom_formation_sql</a>
-                        <a href="#" class="list-group-item list-group-item-action">Nom_formation_sql</a>
+                    
                 </div>
 
             </div>
