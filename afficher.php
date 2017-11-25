@@ -22,16 +22,17 @@
         $pdo = connexion();
 
         $requete = "select contenu_formation from formation order by id_Formation";
-        $execRequete = $pdo->query($requete);
+        $counter = "select count(contenu_formation) from formation";
 
-        $data = $execRequete->fetch();
+        $execRequete = $pdo->query($requete);
+        $execCounter = $pdo->query($counter);
+
+        $data = $execRequete->fetchAll();
 
         foreach ($data as $valeur) {
-            echo "<a class='list-group-item list-group-item-action'>".$valeur."</a>";
-        }
+            echo "<a class='list-group-item list-group-item-action'>".$valeur['contenu_formation']."</a>";
+        } 
 
-
-        return $data;
 
     }
 
