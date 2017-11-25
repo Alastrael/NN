@@ -1,0 +1,46 @@
+/*document css de l'index de l'accueil avec l'affichage des différentes formations */
+
+/*Le fond de la page*/
+#container {
+    background: rgb(56, 56, 54)
+}
+
+/*La "bannière" de l'accueil*/
+#banner{
+    display: flex;
+}
+
+.centrer {
+    margin-left: auto;
+    margin-right: auto;
+}
+/*Le logo de la maison des ligues*/
+#logo {
+    width: 392px; /* il est préférable de calculer cette valeur en % pour qu'il s'adapte*/
+	height:392px;
+	margin:20px 15px;
+	border: solid #fff 1px;
+	background-color:rgb(231, 199, 13);
+}
+/*L'espace du titre*/
+#titre {
+    width:80%;
+    height: 150px;
+	background-color:rgb(36, 98, 212);
+	text-align: center;
+	color:#fff;
+    margin: 20px 10px;	
+    border: solid;
+}
+
+#tableauFormation {
+    width: 85%; /* il est préférable de calculer cette valeur en % pour qu'il s'adapte*/
+	height:800px;
+	margin:20px auto;
+	border: solid #fff 1px;
+	background-color:rgb(184, 182, 175);
+}
+
+#formations {
+    margin : 20px 20px;
+}
