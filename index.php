@@ -31,7 +31,7 @@
 
         <header id="banner">
                     
-                <div id="logo"><img src="doc\img\M2L.jpg" alt="Not found"></div>
+                <div id="logo"><img src="doc\img\Mansion.jpg" alt="Not found"></div>
                     
                 <div id="titre">
                     <h1> <br> Accueil M2L</h1>
@@ -51,7 +51,7 @@
                   <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item active">
-                      <a class="nav-link" href="#">Formations Inscrites<span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="index.php">Formations Inscrites<span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item">

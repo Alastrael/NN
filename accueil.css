@@ -16,11 +16,10 @@
 }
 /*Le logo de la maison des ligues*/
 #logo {
-    width: 392px; /* il est préférable de calculer cette valeur en % pour qu'il s'adapte*/
-	height:392px;
+    width: 220px; /* il est préférable de calculer cette valeur en % pour qu'il s'adapte*/
+	height:158px;
 	margin:20px 15px;
 	border: solid #fff 1px;
-	background-color:rgb(231, 199, 13);
 }
 /*L'espace du titre*/
 #titre {
