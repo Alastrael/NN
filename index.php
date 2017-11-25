@@ -2,7 +2,7 @@
 
 <?php
 
-    require_once("afficher.php");
+    require_once("dataAccessCRUD/afficher.php");
 
 ?>
 
