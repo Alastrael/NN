@@ -19,7 +19,7 @@
     width: 220px; /* il est préférable de calculer cette valeur en % pour qu'il s'adapte*/
 	height:158px;
 	margin:20px 15px;
-	border: solid #fff 1px;
+	border: solid #fff 1px ;
 }
 /*L'espace du titre*/
 #titre {
