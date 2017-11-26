@@ -27,19 +27,28 @@
 
 <body>
 
+
+    <!-- Début du haut de page !-->
     <div id="container" class="centrer">
 
         <header id="banner">
                     
-                <div id="logo"><img src="doc\img\Mansion.jpg" alt="Not found"></div>
+                <div id="logo"><img src="doc\img\Mansion.jpg" alt="Not found" class="rounded"></div>
                     
-                <div id="titre">
+                <div id="titre" class="rounded">
                     <h1> <br> Accueil M2L</h1>
+                </div>
+
+                <div>
+                    <button type="logout">Déconnexion</button>
                 </div>
                     
         </header>
+        <!-- Fin du haut de page !-->
 
 
+
+        <!-- Début du menu -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#"></a>
 
@@ -62,7 +71,6 @@
                         <a class="nav-link" href="#">Historique des formations</a>
                       </li>
                   
-
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0">
@@ -72,31 +80,26 @@
 
             </div>
 
-        </nav>
+        </nav> 
+        <!-- Fin du menu !-->
         
 
+
+        <!-- Début du tableau des formations !-->
         <div id="tableauFormation">
 
             <div id="formations">
 
                 <div id="divPrint">
-            
                     <?php
                             nbrPrint();
                     ?>
-
                 </div>
 
                 <div class="list-group">
-                        
-
                             <?php      
-                            
                                 nomFormation();
-                            
                             ?>
-                            
-                    
                 </div>
 
             </div>
