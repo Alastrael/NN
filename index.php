@@ -40,7 +40,7 @@
                 </div>
 
                 <div>
-                    <button type="logout">Déconnexion</button>
+                    <button type="logout" id="logout">Déconnexion</button>
                 </div>
                     
         </header>
