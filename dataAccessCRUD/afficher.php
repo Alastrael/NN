@@ -36,6 +36,22 @@
 
     }
 
+    function nbrPrint()
+    {
+        $pdo = connexion();
+        
+                $requete = "select contenu_formation from formation order by id_Formation";
+                $counter = "select count(contenu_formation) from formation";
+        
+                $execRequete = $pdo->query($requete);
+                $execCounter = $pdo->query($counter);
+        
+                $data = $execRequete->fetchAll();
+        
+                foreach ($data as $valeur) {
+                    echo "<button id='print' type='print'>Imprimer</button>";
+                } 
+    }
 
 
 ?>

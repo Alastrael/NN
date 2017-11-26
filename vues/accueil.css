@@ -42,4 +42,14 @@
 
 #formations {
     margin : 20px 20px;
+    display: flex;
+}
+
+#divPrint {
+    display : flex;
+    flex-direction: column;
+}
+
+#print {
+    margin : 10px 10px;
 }

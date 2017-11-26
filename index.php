@@ -79,6 +79,14 @@
 
             <div id="formations">
 
+                <div id="divPrint">
+            
+                    <?php
+                            nbrPrint();
+                    ?>
+
+                </div>
+
                 <div class="list-group">
                         
 
