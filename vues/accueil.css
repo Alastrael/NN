@@ -2,12 +2,19 @@
 
 /*Le fond de la page*/
 #container {
+    font: 20px Montserrat, sans-serif;
+    font-size: 16px;
     background: rgb(56, 56, 54)
 }
 
 /*La "bannière" de l'accueil*/
 #banner{
     display: flex;
+}
+
+.arrondis {
+    border: 2px solid;
+    border-radius: 25px;
 }
 
 .centrer {
@@ -24,13 +31,17 @@
 #logo {
     width: 220px; /* il est préférable de calculer cette valeur en % pour qu'il s'adapte*/
 	height:158px;
-	margin:20px 15px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    margin-left: 105px;
+    border-radius: 100px;
 }
 /*L'espace du titre*/
 #titre {
-    width:50%;
+    border-radius: 100px;
+    width: 60%;
     height: 150px;
-	background-color:rgb(36, 98, 212);
+	background-color:rgb(40, 93, 136);
 	text-align: center;
 	color:#fff;
     margin: auto auto;	
@@ -57,4 +68,8 @@
 
 #print {
     margin : 10px 10px;
+}
+
+#decalage {
+    margin : 0px 65px;
 }

@@ -33,9 +33,9 @@
 
         <header id="banner">
                     
-                <div id="logo"><img src="doc\img\Mansion.jpg" alt="Not found" class="rounded"></div>
+                <div id="logo"><img src="doc\img\Mansion.jpg" alt="Not found" class="arrondis"></div>
                     
-                <div id="titre" class="rounded">
+                <div id="titre" class="arrondis">
                     <h1> <br> Accueil M2L</h1>
                 </div>
 
@@ -49,7 +49,7 @@
 
 
         <!-- Début du menu -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="decalage">
                 <a class="navbar-brand" href="#"></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,9 +97,9 @@
                 </div>
 
                 <div class="list-group">
-                            <?php      
-                                nomFormation();
-                            ?>
+                        <?php      
+                            nomFormation();
+                        ?>
                 </div>
 
             </div>
