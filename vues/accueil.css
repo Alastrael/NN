@@ -1,15 +1,28 @@
 /*document css de l'index de l'accueil avec l'affichage des différentes formations */
 
 /*Le fond de la page*/
+body {
+    background-color: rgb(67, 70, 64) !important;
+}
+
 #container {
-    font: 20px Montserrat, sans-serif;
-    font-size: 16px;
-    background: rgb(56, 56, 54)
+    font-family: 20px Montserrat, sans-serif;
+    font-size: 21px;
 }
 
 /*La "bannière" de l'accueil*/
 #banner{
     display: flex;
+}
+
+#logo {
+    margin : 0.7% 0.7%;
+}
+
+.button {
+    border: 1.4px solid rgb(138, 138, 138);
+    background-color: rgb(26, 27, 27);
+    color : rgb(146, 146, 146);
 }
 
 .arrondis {
@@ -22,28 +35,23 @@
     margin-right: auto;
 }
 
-#logout {
+.logout {
     margin : 21px 10px;
 }
 
-
-/*Le logo de la maison des ligues*/
-#logo {
-    width: 220px; /* il est préférable de calculer cette valeur en % pour qu'il s'adapte*/
-	height:158px;
-    margin-top: 15px;
-    margin-bottom: 25px;
-    margin-left: 105px;
-    border-radius: 100px;
+.list-group {
+    width: 100%;
 }
+
 /*L'espace du titre*/
 #titre {
+    background-image: linear-gradient(60deg, rgb(29, 50, 59), rgb(47, 102, 219),rgb(29, 50, 59));
     border-radius: 100px;
     width: 60%;
     height: 150px;
-	background-color:rgb(40, 93, 136);
+	/*background-color:rgb(40, 93, 136);*/
 	text-align: center;
-	color:#fff;
+	color:rgb(8, 10, 19);
     margin: auto auto;	
     border: solid;
 }
@@ -53,7 +61,7 @@
 	height:800px;
 	margin:20px auto;
 	border: solid #fff 1px;
-	background-color:rgb(184, 182, 175);
+	/*background-color:rgb(184, 182, 175);*/
 }
 
 #formations {
@@ -61,13 +69,8 @@
     display: flex;
 }
 
-#divPrint {
-    display : flex;
-    flex-direction: column;
-}
-
 #print {
-    margin : 10px 10px;
+    width: 10%;
 }
 
 #decalage {
