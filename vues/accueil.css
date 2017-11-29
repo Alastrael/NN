@@ -2,12 +2,12 @@
 
 /*Le fond de la page*/
 body {
-    background-color: rgb(67, 70, 64) !important;
+    background-color: rgb(28, 30, 37) !important;
 }
 
 #container {
     font-family: 20px Montserrat, sans-serif;
-    font-size: 21px;
+    font-size: 19px;
 }
 
 /*La "bannière" de l'accueil*/
