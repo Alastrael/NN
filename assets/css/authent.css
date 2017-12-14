@@ -1,0 +1,43 @@
+/*document css de la page d'authentification*/
+
+body {
+    background-color: rgb(105, 98, 98) !important ;
+}
+
+label {
+    background : white;
+}
+
+#logo {
+    margin : 0.7% 0.7%;
+}
+
+.arrondis {
+    border: 2px solid;
+    border-radius: 25px;
+}
+
+
+#titre {
+    background-image: linear-gradient(60deg, rgb(29, 50, 59), rgb(47, 102, 219),rgb(29, 50, 59));
+    border-radius: 100px;
+    width: 60%;
+    height: 150px;
+	/*background-color:rgb(40, 93, 136);*/
+	text-align: center;
+	color:rgb(8, 10, 19);
+    margin: auto auto;	
+    border: solid;
+    padding-top: 1.5%;
+}
+
+#mdp {
+    margin-top: 10%;
+}
+
+#smbt {
+    margin-top : 3%;
+    margin-left : 10%;
+}
+
+

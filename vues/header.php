@@ -4,11 +4,16 @@
         <div class="row">
         
                 <div id="logo" class="col-md-2">
-                    <img src="doc\img\Mansion.jpg" alt="Not found">
+                    <img src="assets\img\Mansion.jpg" alt="Not found">
+                    <p>
+                        <?php
+                            echo "Session : ".nomSalarie($_COOKIE["moncookie"]);
+                        ?>
+                    </p>
                 </div>
                     
                 <div id="titre" class="arrondis col-md-4">
-                    <h1> <br>Maison des ligues</h1>
+                    <h1>Maison des ligues</h1>
                 </div>
 
                 <div class="col-md-2">
