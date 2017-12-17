@@ -41,14 +41,14 @@
 
     ?>
 
-    <div class="row">
+    <div id="identif" class="row">
 
         <div class="col-md-5"></div>
 
         <div class="col-md-5">
 
             <form id="form1" name="form1" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" >
-                <table border="1">
+                <table class="bordure">
                     <tr>
                         <td><input type="text" class="form-control" id="id" name="identifiant" placeholder="Votre identifiant..." maxlength="100"></td>
                     </tr>
@@ -59,7 +59,7 @@
         
                 </table>
             
-                <input type="submit" id="smbt" name="envoyer" value=" ENVOYER "/>
+                <input type="submit" id="smbt" class="btn btn-warning" name="envoyer" value=" Connection "/>
 
             </form>
 
