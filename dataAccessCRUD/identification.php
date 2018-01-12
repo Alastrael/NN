@@ -50,4 +50,24 @@
     }
     //fin de fonction de redirection
 
+
+
+
+    function chef($id)
+    {
+        $connexion = connexion();
+
+        $requete = "select id_Salarie from equipe where id_Salarie = :id";
+
+        $resultat = $connexion->prepare($requete);
+        $resultat->BindValue(':id',$id);
+
+        $execResultat = $resultat->execute();
+
+        $tabResultat = $resultat->fetch();
+
+        return $tabResultat;
+
+    }
+
 ?>

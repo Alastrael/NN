@@ -23,6 +23,10 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if ($_COOKIE["nomPage"]=="historique") echo "active"; ?>" href="#">Historique des formations</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($_COOKIE["nomPage"]=="equipe") echo "active"; ?>" href="#">Votre équipe</a>
+                    </li>
                   
                 </ul>
 

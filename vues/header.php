@@ -11,13 +11,13 @@
                     <h1>Maison des ligues</h1>
                 </div>
 
-                <div class="col-md-3 ligne">
-                <p id = "session">    
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger logout" onclick="deco()">Déconnexion</button>
+                    <p id = "session">    
                         <?php
                             echo "Session : ".nomSalarie($_COOKIE["moncookie"]);
                         ?>
                     </p>
-                    <button type="button" class="btn btn-danger logout" onclick="deco()">Déconnexion</button>
                 </div>
 
         </div>

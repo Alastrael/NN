@@ -66,18 +66,29 @@
         </div>
 
         <?php
-            if (isset($_POST['envoyer']))
-                {
+
+            if (isset($_POST['envoyer'])) {
                     $id = $_POST['identifiant'];
                     $mdp = $_POST['motdepasse'];
 
-                    if(identifi($id, $mdp))
-                        {
+                    if(identifi($id, $mdp)) {
                             setcookie("moncookie",$id);
-                            $url = "index.php";
-			                redirection($url);
-			                exit();
+                            setcookie("nomPage","authent");
+
+                            $value = chef($id);
+
+                                if($value[0] == $id) {
+                                    $url = "_indexCHEF.php";
+                                    redirection($url);
+                                    exit();
+                                }
+                                else {
+                                    $url = "index.php";
+                                    redirection($url);
+                                    exit();
+                                }                          
                         }
+                        
                     else echo "<div class='col-md-2'>Vous avez rentré un mauvais login ou mot de passe.</div>";
 	            }
 	    ?>

@@ -26,7 +26,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.min.js" ></script>
 
-    <title>Accueil - M2L</title>
+    <title>CHEF</title>
 
 </head>
 
@@ -39,11 +39,11 @@
 
             include_once("vues/header.php");
 
-            include_once("vues/landing.php");
+            include_once("vues/_landingCHEF.php");
 
             include_once("vues/footer.php"); 
 
-        ?>       
+        ?>
        
 </body>
 

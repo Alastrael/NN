@@ -34,7 +34,7 @@
 
         $pdo = connexion();
 
-        $requete = "select * from salarie natural join participer natural join formation where salarie.id_Salarie = participer.id_salarie and salarie.id_Salarie = :id";
+        $requete = "select * from salarie natural join participer natural join formation where (statut=1 or statut=2) and salarie.id_Salarie = :id";
 
         $prepReq = $pdo->prepare($requete);
         $prepReq->BindValue(':id',$id);
@@ -58,7 +58,7 @@
     function offreFormationDispo($id)
     {
         $dbh = connexion();
-        $requete = "select * from salarie natural join participer natural join formation where salarie.id_Salarie != participer.id_salarie and salarie.id_Salarie = :id order by id_Formation";
+        $requete = "select * from salarie natural join participer natural join formation where statut='0' and salarie.id_Salarie = :id";
         
         $prepReq = $dbh->prepare($requete);
         $prepReq->BindValue(':id',$id);
@@ -96,4 +96,9 @@
     }
     //fin fonction nomSalarie
 
+    function rediriger($cible) {
+        
+        header('Location:'.$cible, false);
+
+    }
 ?>
