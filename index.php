@@ -43,7 +43,7 @@
 
             include_once("vues/footer.php"); 
 
-        ?>       
+        ?>
        
 </body>
 
