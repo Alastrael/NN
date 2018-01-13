@@ -35,6 +35,11 @@ label {
     border-radius: 10px;
 }
 
+#LogInTexte {
+    text-align: center;
+
+}
+
 .connexion {
     background-color: rgb(43, 119, 151) !important;
     border : 3px solid;

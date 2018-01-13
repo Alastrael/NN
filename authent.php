@@ -18,12 +18,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.min.js" ></script>
 
-
+    <script src="assets/js/erreurDeConnexion.js"></script>
 
     <?php
+        //Destruction du cookie "moncooki" qui recueille l'identifiant de la personne identifiée.
         setcookie("moncookie","",time()-3600);
-    //Chemin du fichier php qui permet d'accèder à la base de donnée et de pouvoir utiliser
-    //l'identification
+        //Chemin du fichier php qui permet d'accèder à la base de donnée et de pouvoir utiliser l'identification.
         include_once("dataAccessCRUD/identification.php");
     ?>
     
@@ -43,54 +43,74 @@
 
     <div id="identif" class="row">
 
-        <div class="col-md-5"></div>
+        <div class="col-md-6">
 
-        <div class="col-md-5">
+            <h3>Log In</h3>
 
+            <!-- Formulaire ayant pour but de renseigner l'identifiant et le mot de passe d'un utilisateur. Il contient également un bouton pour envoyer les données. -->
             <form id="form1" name="form1" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" >
                 <table class="bordure">
                     <tr>
-                        <td><input type="text" class="form-control" id="id" name="identifiant" placeholder="Votre identifiant..." maxlength="100"></td>
+                        <td>Identifiant<input type="text" class="form-control" id="id" name="identifiant" placeholder="Votre identifiant..." maxlength="100"></td>
                     </tr>
 
                     <tr>
-                        <td><input type="password" id="mdp" class="form-control" name="motdepasse" placeholder="Votre mot de passe..." maxlength="100"></td>
+                        <td>Mot de passe<input type="password" id="" class="form-control" name="motdepasse" placeholder="Votre mot de passe..." maxlength="100"></td>
                     </tr>
         
                 </table>
-            
-                <input type="submit" id="smbt" class="btn btn-warning" name="envoyer" value=" Connection "/>
+                
+                <input type="submit" id="smbt" class="btn btn-warning" name="boutonConnexion" value=" Connexion "/>
 
             </form>
 
         </div>
 
+        <div class="col-md-6">
+
+            <h3>Quelle est l'utilité de ce site ?</h3>
+
+            <p>
+                Via l'interface intuitive de ce site, vous pourrez soumettre des demandes d'affectation à certaines formations. Vos choix de formations seront
+                acceptées ou non par votre chef d'équipe.<br> Vous pourrez également consulter les formations que vous avez déjà effectuées.
+            </p>
+
+        </div>
+
         <?php
 
-            if (isset($_POST['envoyer'])) {
-                    $id = $_POST['identifiant'];
-                    $mdp = $_POST['motdepasse'];
+            //Processus de vérification permettant la connexion
+            if (isset($_POST['boutonConnexion'])) 
+            {
+                $id = $_POST['identifiant'];
+                $mdp = $_POST['motdepasse'];
 
-                    if(identifi($id, $mdp)) {
-                            setcookie("moncookie",$id);
-                            setcookie("nomPage","authent");
+                if(identifi($id, $mdp)) 
+                {
+                    setcookie("moncookie",$id);
+                    setcookie("nomPage","authent");
 
-                            $value = chef($id);
-
-                                if($value[0] == $id) {
-                                    $url = "_indexCHEF.php";
-                                    redirection($url);
-                                    exit();
-                                }
-                                else {
-                                    $url = "index.php";
-                                    redirection($url);
-                                    exit();
-                                }                          
-                        }
-                        
-                    else echo "<div class='col-md-2'>Vous avez rentré un mauvais login ou mot de passe.</div>";
-	            }
+                    $value = chef($id);
+                    
+                    //Verification du statut de l'employé qui s'identifie
+                    if($value[0] == $id) 
+                    {
+                        //Si il est chef.
+                        $url = "_indexCHEF.php";
+                        redirection($url);
+                        exit();
+                    }
+                    else 
+                    {
+                        //Si c'est un employé.
+                        $url = "index.php";
+                        redirection($url);
+                        exit();
+                    }                          
+                }
+                //Si le mot de passe ou l'identifiant rentré est mauvais.    
+                else echo '<script>erreurConnexion()</script>';
+	        }
 	    ?>
 
     </div>
