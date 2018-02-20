@@ -56,7 +56,6 @@
         }//ferme le foreach
     }//ferme la fonction nomDeFormations
 
-
     function OffresFormations(){
         $data = offreFormationDispo($_COOKIE["moncookie"]);
         foreach ($data as $valeur) {
@@ -164,7 +163,7 @@
 
         foreach ($data as $valeur) {
             $formations = formationsEnAttente($valeur['id_Salarie']);
-            print_r($formations);
+            //print_r($formations);
             echo 
             "
             <a class='list-group-item list-group-item-action' data-toggle='collapse' href='#"
@@ -192,12 +191,17 @@
                     <?php if($message != "Aucune.") echo"
                     <form action='vues/_updateCHEF.php' method='POST' id='".$valeur['id_Salarie']."'>
                         <div class='form-group'>
-                            <label for='exampleFormControlSelect1'>Selection</label>
+                            <label for='exampleFormControlSelect1'>Selectionnez la formation que vous autorisez : </label>
                             <select class='form-control' id='exampleFormControlSelect1' name='selectOption'>
                                 <option value='".$valeur['id_Formation']."'>".$valeur['nom_formation']."</option>;  
                             </select>
                         </div>
-                        <input type='submit' value='submit'>
+                        <div class='form-group' id='cacher'>
+                            <select class='form-control' id='cacher' name='idSalarie'>
+                                <option value='".$valeur['id_Salarie']."'>".$valeur['id_Salarie']."</option>;  
+                            </select>
+                        </div>
+                        <input type='submit' value='Valider'>
                     </form> 
                     "?>                                   
                 </div>
