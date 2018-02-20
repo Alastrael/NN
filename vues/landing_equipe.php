@@ -6,7 +6,7 @@
     <div class="row">
         <div id="formations" class="col-md-10">
             <div class="list-group">
-                <?php nomDeFormation();?>
+                <?php equipeAffichage();?>
             </div>
         </div>
     </div>

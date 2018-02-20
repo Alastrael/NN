@@ -8,22 +8,19 @@
                 </button>
               
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-            
                 <ul class="navbar-nav mr-auto">
-
                     <li class="nav-item">
                       <a class="nav-link <?php if ($_COOKIE["nomPage"]=="index") echo "active"; ?>" href="index.php">Formation(s) Inscrite(s)<span class="sr-only">(current)</span></a>
                     </li>
-
                     <li class="nav-item">
                       <a class="nav-link <?php if ($_COOKIE["nomPage"]=="offres") echo "active"; ?>" href="offres.php">Offres de formation</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($_COOKIE["nomPage"]=="historique") echo "active"; ?>" href="#">Historique des formations</a>
+                        <a class="nav-link <?php if ($_COOKIE["nomPage"]=="historique") echo "active"; ?>" href="historique_des_formations.php">Historique des formations</a>
                     </li>
-                  
+                    <?php 
+                        if(chef($_COOKIE["moncookie"]))echo "<li class='nav-item'><a class='nav-link ".(($_COOKIE['nomPage']=='equipe') ? 'active' : '')."' href='equipe.php'>Votre équipe</a></li>";
+                    ?>
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0">

@@ -5,8 +5,7 @@
      *
      * @return PDO
      */
-    function connexion()
-    {
+    function connexion(){
 
         $host = "localhost";
         $dbname = "bdd_m2l";
@@ -21,16 +20,13 @@
     }
     //fin fonction connexion
 
-
-
     /**
      * Cette fonction a pour but de renvoyer toutes les informations des formations ordonnées par les id
      *
      * @param [string] $id
      * @return void
      */
-    function nomFormation($id)
-    {
+    function nomFormation($id){
 
         $pdo = connexion();
 
@@ -45,9 +41,7 @@
 
         return $data;
     }
-    //fin nomFormation
-
-
+    //fin de la fonction nomFormation
 
     /**
      * Cette fonction a pour but de rechercher une formation avec son id
@@ -55,8 +49,7 @@
      * @param [string] $id
      * @return void
      */
-    function offreFormationDispo($id)
-    {
+    function offreFormationDispo($id){
         $dbh = connexion();
         $requete = "select * from salarie natural join participer natural join formation where statut='0' and salarie.id_Salarie = :id";
         
@@ -69,8 +62,51 @@
         
         return $data;
     }
-    //fin de fonction
+    //fin de la fonction des offres de formations disponible
 
+    function formationsEnAttente($id){
+        $dbh = connexion();
+        $requete = "select * from salarie natural join participer natural join formation where statut='2' and salarie.id_Salarie = :id";
+        $prepReq = $dbh->prepare($requete);
+        $prepReq->BindValue(':id',$id);
+
+        $execPrepReq = $prepReq->execute();
+        
+        $data = $prepReq->fetchAll();
+        
+        return $data;
+    }
+
+    function formationsFinie($id){
+        $dbh = connexion();
+        $requete = "select * from salarie natural join participer natural join formation where statut='5' and salarie.id_Salarie = :id";
+        $prepReq = $dbh->prepare($requete);
+        $prepReq->BindValue(':id',$id);
+
+        $execPrepReq = $prepReq->execute();
+        
+        $data = $prepReq->fetchAll();
+        
+        return $data;
+    }
+
+    function equipier($id){
+        $dbh = connexion();
+        $requete = "select Id_Equipe from equipe where id_Salarie = :id";
+        $prepReq = $dbh->prepare($requete);
+        $prepReq->BindValue(':id',$id);
+        $execPrepReq = $prepReq->execute();
+        $data = $prepReq->fetch();
+
+        $requete = "select * from salarie where Id_Equipe = :data and id_Salarie <> :id";
+        $prepReq = $dbh-> prepare($requete);
+        $prepReq->BindValue(':id',$id);
+        $prepReq->BindValue(':data',$data[0]);
+        $execPrepReq = $prepReq->execute();
+        $data = $prepReq->fetchAll();
+        
+        return $data;
+    }
 
     /**
      * Cette fonction a pour but de renvoyer le nom du salarié
@@ -101,4 +137,6 @@
         header('Location:'.$cible, false);
 
     }
+
+
 ?>
