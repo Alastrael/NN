@@ -4,8 +4,6 @@
     require_once("dataAccessCRUD/formations.php");
     require_once("vues/afficher.php");
     require_once("dataAccessCRUD/identification.php");
-
-    //require_once("dataAccessCRUD/test.php");
 ?>
 
 <html lang="en">
@@ -33,14 +31,13 @@
     <title>Equipe</title>
 </head>
 <body>
+
     <?php
         $_COOKIE["nomPage"] = "equipe";
-
         include_once("dataAccessCRUD/redirectionCookies.php");
-
         include_once("vues/header.php");
-
         include_once("vues/landing_equipe.php");
     ?>
+
 </body>
 </html>

@@ -138,5 +138,22 @@
 
     }
 
+    /**
+     * Cette fonction a pour but de changer le statut d'une formation qui est en attente par accepté.
+     *
+     * @param $id,$nom
+     * @return void
+     */
+    function updateChef($id,$nom){
+        $connexion = connexion();
+        $requete = "update participer set statut = '1' where participer.id_Salarie = :nom and participer.id_Formation = :id";
+        $prepRequete = $connexion->prepare($requete);
+        $prepRequete->bindValue(':id',$id);
+        $prepRequete->bindValue(':nom',$nom);
+        $execRequete = $prepRequete->execute();
+        $url = "../equipe.php";
+        rediriger($url);
+    }
+
 
 ?>

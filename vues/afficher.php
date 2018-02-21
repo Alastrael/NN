@@ -180,30 +180,45 @@
                         <p>
                             <?php echo $valeur['nom_Salarie'] ?> a demandé de suivre les formations suivantes : <br>
                             <?php 
-                                $message = "Aucune.";
+                                $message = "";
                                 foreach ($formations as $valeur) {
-                                    if(count($formations)===1) $message = "- ".$valeur['nom_formation'];
+                                    print_r($valeur);
+                                    if(count($formations)>=1){
+                                        if($valeur['nom_formation']) $message = "Aucune.";
+                                        else {
+                                            echo "- ".$valeur['nom_formation']."<br>";
+                                        $message = "";
+                                        }
+                                    } 
                                 }
-                                echo $message;
+                                if($message == "Aucune") echo $message;
                             ?>
                         </p>
                     </div>
-                    <?php if($message != "Aucune.") echo"
+                    <?php if($message != "Aucune."){ echo"
                     <form action='vues/_updateCHEF.php' method='POST' id='".$valeur['id_Salarie']."'>
                         <div class='form-group'>
                             <label for='exampleFormControlSelect1'>Selectionnez la formation que vous autorisez : </label>
-                            <select class='form-control' id='exampleFormControlSelect1' name='selectOption'>
-                                <option value='".$valeur['id_Formation']."'>".$valeur['nom_formation']."</option>;  
+                            <select class='form-control' id='exampleFormControlSelect1' name='identifiantFormation'>";
+                            foreach ($formations as $formation) {
+                                echo "<option value='".$formation['id_Formation']."'>".$formation['nom_formation']."</option>";
+                            }
+                            echo "     
                             </select>
-                        </div>
-                        <div class='form-group' id='cacher'>
-                            <select class='form-control' id='cacher' name='idSalarie'>
-                                <option value='".$valeur['id_Salarie']."'>".$valeur['id_Salarie']."</option>;  
-                            </select>
-                        </div>
-                        <input type='submit' value='Valider'>
-                    </form> 
-                    "?>                                   
+                            </div>
+                                <select class='form-control' id='cacher' name='identifiantSalarie'>
+                                    <option value='".$valeur['id_Salarie']."'>".$valeur['id_Salarie']."</option>;  
+                                </select>
+                            <div class='form-group'>
+                                <select class='form-control' name='decision'>
+                                    <option value='accepter'>accepter</option>;  
+                                    <option value='refuser'>refuser</option>; 
+                                </select>
+                            </div>
+
+                            <input type='submit' value='Valider'>
+                        </form> 
+                    ";}?>                                   
                 </div>
             </div>
         <?php
