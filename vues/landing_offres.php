@@ -1,27 +1,14 @@
 <?php
-    include_once("barreNavigation.php");
-?>
-
-<!-- 
-    Début d'un tableau montrant les offres de formations    
-!-->
-
-    <div class="row">
-
-        <div id="formations" class="col-md-10">
-
-            <div class="list-group">
-                <?php      
+        include_once("barreNavigation.php");
+    ?>
+        <!-- Début du tableau des formations !-->
+        <div id="landing" class="row justifiy-content-center">
+            <div id="formations" class="justifiy-content-center" style="margin-left: 25%;">
+                <div class="list-group justifiy-content-center" style="width: 900px;">
+                    <?php      
                         OffresFormations();
-                ?>
+                    ?>
+                </div>
             </div>
-
         </div>
-
-    </div>
-
-
-</div>
-<!--
-    Fin du container de offres.php
-!-->
+</div> <!-- fin container !-->

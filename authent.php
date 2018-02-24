@@ -21,36 +21,49 @@
     <title>Portail d'accès</title>
 </head>
 <body>
-    <div id="container" class="container-fluid center">
-    
-        <?php
-            //affichage du header de la page de connexion
-            include_once("vues/connexion_header.php");
-        ?>
-
-        <div id="identif" class="row">
-            <div class="col-md-6">
-                <h3>Log In</h3>
+    <?php
+        //affichage du header de la page de connexion
+        include_once("vues/connexion_header.php");
+    ?>
+    <div class="container" style="margin-top:5%">
+        <div class="row justifiy-content-center">
+            <div class="card bg-light border-info mb-3 pad " style="border-width: thin; width: 30%;">
+                <div class = "card-header text-center" style="background-color: rgb(70, 71, 71) !important; color:white;">
+                    <h4>Authentification</h4>
+                </div>
+                <div class="card-body text-center">
                 <!-- Formulaire ayant pour but de renseigner l'identifiant et le mot de passe d'un utilisateur. Il contient également un bouton pour envoyer les données. -->
-                <form id="form1" name="form1" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" >
-                    <table class="bordure">
+                <form class="justifiy-content-center" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" style="margin-bot:-4%;">
+                <!--
+                    <table class="justifiy-content-center">
                         <tr>
-                            <td>Identifiant<input type="text" class="form-control" id="id" name="identifiant" placeholder="Votre identifiant..." maxlength="100"></td>
+                            <td>Identifiant<input type="text" class="form-control" name="identifiant" placeholder="Votre identifiant..." maxlength="100"></td>
                         </tr>
                         <tr>
-                            <td>Mot de passe<input type="password" id="" class="form-control" name="motdepasse" placeholder="Votre mot de passe..." maxlength="100"></td>
+                            <td>Mot de passe<input type="password" class="form-control" name="motdepasse" placeholder="Votre mot de passe..." maxlength="100"></td>
                         </tr>
+
                     </table>
-                    <input type="submit" id="smbt" class="btn btn-warning" name="boutonConnexion" value=" Connexion "/>
+                !-->
+                    <div>
+                        <input type="text" class="form-control" name="identifiant" placeholder="Votre identifiant..." maxlength="100">
+                    </div class="form-group">
+                    <div class="form-group" style="margin-top:5%">
+                        <input type="password" class="form-control" name="motdepasse" placeholder="Votre mot de passe..." maxlength="100">
+                    </div>
+
+
+                    <input type="submit" class="btn btn-warning" style="margin-top:10%" name="boutonConnexion" value=" Connexion "/>
                 </form>
+                </div>
             </div>
-            <div class="col-md-6">
+            <!--<div class="row justify-content-center">
                 <h3>Quelle est l'utilité de ce site ?</h3>
                 <p>
                     Via l'interface intuitive de ce site, vous pourrez soumettre des demandes d'affectation à certaines formations. Vos choix de formations seront
                     acceptées ou non par votre chef d'équipe.<br>Vous pourrez également consulter les formations que vous avez déjà effectuées.
                 </p>
-            </div>
+            </div>!-->
 
             <?php
                 //Processus de vérification permettant la connexion
@@ -60,24 +73,13 @@
                     if(identifi($id, $mdp)) {
                         setcookie("moncookie",$id);
                         setcookie("nomPage","authent");
-                        $value = chef($id);
-                        //Verification du statut de l'employé qui s'identifie
-                        if($value[0] == $id) {
-                            //Si il est chef.
-                            $url = "_indexCHEF.php";
-                            redirection($url);
-                            exit();
-                        }
-                        else {
-                            //Si c'est un employé.
-                            $url = "index.php";
-                            redirection($url);
-                            exit();
-                        }                          
+                        $url = "index.php";
+                        redirection($url);
+                        exit();
                     }
-                    //Si le mot de passe ou l'identifiant rentré est mauvais.    
                     else echo '<script>erreurConnexion()</script>';
-                }
+                    //Si le mot de passe ou l'identifiant rentré est mauvais.                       
+                } 
             ?>
         </div>
     </div>

@@ -1,26 +1,21 @@
-<div id="container" class="container-fluid center">
 <!-- Début du haut de page !-->
-
-        <div class="row">
-        
-                <div id="logo" class="col-md-2">
-                    <img src="assets\img\MaisonDesLigues.jpg" alt="Not found">
-                </div>
-                    
-                <div id="titre" class="arrondis col-md-4">
-                    <h1>Maison des ligues</h1>
-                </div>
-
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-danger logout" onclick="deco()">Déconnexion</button>
-                    <p id = "session">    
-                        <?php
-                            echo "Session : ".nomSalarie($_COOKIE["moncookie"]);
-                        ?>
-                    </p>
-                </div>
-
+<div id="header" class="container-fluid center">
+    <div class="row">
+        <div style="margin-left:1%;">
+            <img src="assets\img\m2l.png" style="max-width: 85%;height: auto;" alt="Not found">
         </div>
-    <hr color="white">
-
+        <div style="color:white;position: absolute;right:0;top:0">
+            <div style="position:absolute;right:10;top:10;">
+                <button type="button" style="background-color: rgba(223, 67, 56, 0.7);"  class="btn btn-danger" onclick="deco()">Déconnexion</button>
+            </div>
+            <div style="margin-top:30%; margin-right:5%">
+                <p>    
+                    <?php
+                        echo "Session de ".nomSalarie($_COOKIE["moncookie"]);
+                    ?>
+                </p>
+            </div> 
+        </div>
+    </div>
+</div>
 <!-- Fin du haut de page !--> 

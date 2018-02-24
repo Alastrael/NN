@@ -27,7 +27,13 @@
         $_COOKIE["nomPage"] = "index";
         include_once("dataAccessCRUD/redirectionCookies.php");
         include_once("vues/header.php");
-        include_once("vues/landing.php");
+    ?>
+    <div>
+        <?php
+            include_once("vues/landing.php");
+        ?>
+    </div>
+    <?php    
         include_once("vues/footer.php"); 
     ?>
        

@@ -13,7 +13,7 @@
 <body>
 
     <?php
-        updateChef($_POST['decision'],$_POST['identifiantFormation'],$_POST['identifiantSalarie']);
+        annulerParticipation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
     ?>
 
 </body>

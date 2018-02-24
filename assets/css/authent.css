@@ -2,7 +2,7 @@
 /*document css de la page d'authentification*/
 
 body {
-    background-color:  rgb(43, 119, 151)  !important ;
+    background-color:  rgb(221, 219, 219)  !important ;
 }
 
 label {
@@ -10,64 +10,28 @@ label {
 }
 
 #logo {
-    margin : 1% 1%;
-    background-color : rgb(193, 197, 195);
-    padding-top: 0.5%;
-    border: 2px solid;
-    border-radius: 10px;
-}
-
-#ligne {
-    border-width: 10px;
-}
-
-.bordure {
-    border: 2px solid;
-    border-radius: 10px;    
+    margin : 1% 1%;/*
+    padding-top: 0.5%;*/
 }
 
 #identif {
     margin-top: 7%;
 }
 
-.arrondis {
-    border: 1px solid;
-    border-radius: 10px;
-}
-
 #LogInTexte {
     text-align: center;
-
 }
 
 .connexion {
-    background-color: rgb(43, 119, 151) !important;
+    background-color: rgb(70, 71, 71) !important;
     border : 3px solid;
-}
-
-
-#titre {
-    background-color : rgb(89, 170, 202);
-
-    width: 60%;
-    height: 120px;
-	/*background-color:rgb(40, 93, 136);*/
-	text-align: center;
-	color:rgb(8, 10, 19);
-    margin: auto auto;	
-    border : 2px solid;
-    padding-top: 1.5%;
 }
 
 #mdp {
     margin-top: 10%;
 }
 
-#form1 {
-    border-spacing: 0px;
+.pad {
+    margin-left: 35%;
 }
 
-#smbt {
-    margin-top : 3%;
-    margin-left : 10%;
-}

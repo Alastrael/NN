@@ -115,27 +115,18 @@
      * @return void
      */
     function nomSalarie($id) {
-
         $connection = connexion();
-
         $requete = "select nom_salarie from salarie where id_Salarie = :id";
-
         $prepReq = $connection->prepare($requete);
         $prepReq->BindValue(':id',$id);
-
         $execPrepReq = $prepReq->execute();
-
         $tab = $prepReq->fetch();
-
         return $tab[0];
-
     }
     //fin fonction nomSalarie
 
     function rediriger($cible) {
-        
         header('Location:'.$cible, false);
-
     }
 
     /**
@@ -144,9 +135,10 @@
      * @param $id,$nom
      * @return void
      */
-    function updateChef($id,$nom){
+    function updateChef($decision,$id,$nom){
         $connexion = connexion();
-        $requete = "update participer set statut = '1' where participer.id_Salarie = :nom and participer.id_Formation = :id";
+        if($decision == "accepter") $requete = "update participer set statut = '1' where participer.id_Salarie = :nom and participer.id_Formation = :id";
+        else $requete = "update participer set statut = '0' where participer.id_Salarie = :nom and participer.id_Formation = :id";
         $prepRequete = $connexion->prepare($requete);
         $prepRequete->bindValue(':id',$id);
         $prepRequete->bindValue(':nom',$nom);
@@ -155,5 +147,26 @@
         rediriger($url);
     }
 
+    function annulerParticipation($id,$nom){
+        $connexion = connexion();
+        $requete = "update participer set statut ='0' where participer.id_Salarie=:nom and participer.id_Formation=:id";
+        $prepRequete = $connexion->prepare($requete);
+        $prepRequete->bindValue(':id',$id);
+        $prepRequete->bindValue(':nom',$nom);
+        $execRequete = $prepRequete->execute();
+        $url = "../offres.php";
+        rediriger($url);
+    }
+
+    function ancienneFormation($id, $nom) {
+        $connexion = connexion();
+        $requete = "update participer set statut ='5' where participer.id_Salarie=:nom and participer.id_Formation=:id";
+        $prepRequete = $connexion->prepare($requete);
+        $prepRequete->bindValue(':id',$id);
+        $prepRequete->bindValue(':nom',$nom);
+        $execRequete = $prepRequete->execute();
+        $url = "index.php";
+        rediriger($url);
+    }
 
 ?>
