@@ -13,7 +13,8 @@
 <body>
 
     <?php
-        annulerParticipation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
+        if($_POST["submit"] == "Annuler ma participation à cette formation")annulerParticipation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
+        else ancienneFormation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
     ?>
 
 </body>

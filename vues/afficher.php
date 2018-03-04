@@ -1,6 +1,6 @@
 <?php    
 //pense bete : creer un bouton qui permettrait de pouvoir valider la formation, il se mettrait disabled tant que la date + durée de la formation est inférieure à la current date
-    function pageFormations($valeur,$page){
+    function pageFormations($valeur,$page,$dateFinale){
         ?>
         <i class='fa fa-arrow-circle-down fa-spin' aria-hidden='true'></i>
             </a> 
@@ -15,6 +15,8 @@
                                 else {
                                     if ($valeur['statut']=='2') echo "En attente de validation";
                                     elseif($valeur['Date_formation']<date("Y-m-d"))echo "En cours";
+                                    elseif($dateFinale<date("Y-m-d"))echo "A classer";
+                                    else echo "Acceptée";
                                 }
                                 ?>
                             </td>
@@ -67,14 +69,15 @@
             "
                 <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
                 .$valeur['id_Formation']."' style='background-color: "
-                .(($valeur['statut']=='2') ? 'rgba(152, 153, 154, 0.3);':';')."' aria-expanded='false' aria-controls='collapseExample'>
+                .(($valeur['statut']=='2') ? 'rgba(152, 153, 154, 0.3)':'').";' aria-expanded='false' aria-controls='collapseExample'>
                 ";
             
-                echo $valeur['nom_formation']; 
+                echo $valeur['nom_formation'];
+                if($valeur['statut']=='2') echo "=> en attente de validation";
 
-                pageFormations($valeur,$page);
+                pageFormations($valeur,$page,$dateFinale);
                 echo "
-                            <form style=' position:relative; left:540px; bottom:38px;' action='vues/annulerParticipation.php' method='POST' id='".$valeur['id_Salarie']."'>
+                            <form style='position:relative; left:540px; bottom:38px;' action='vues/annulerParticipation.php' method='POST' id='".$valeur['id_Salarie']."'>
                                 <div>
                                     <input type='hidden' value='".$valeur['id_Formation']."' name='identifiantParticipation'>
                                 </div>";
@@ -82,8 +85,14 @@
                     <?php
                         if($valeur['Date_formation']>=date("Y-m-d")) echo "
                         <div>
-                            <input class='btn btn-primary' style='background-color:black;' type='submit' value='Annuler ma participation à cette formation'>
-                        </div>"
+                            <input class='btn btn-primary' style='background-color: rgba(44, 156, 164, 0.8); color:white;'
+                             onclick='alert(".$valeur['nom_formation'].
+                            ")' type='submit' name='submit' value='Annuler ma participation à cette formation'>
+                        </div>";
+                        else echo "
+                        <div>
+                            <input class='btn btn-primary' style='background-color: rgba(44, 156, 164, 0.8); color:white;' name='submit' type='submit' value='Classer cette formation'>
+                        </div>";
                     ?>
                                 
                             </form>
@@ -101,6 +110,8 @@
         $data = offreFormationDispo($_COOKIE["moncookie"]);
         $page = "offres";
         foreach ($data as $valeur) {
+            $dateFinale = $valeur['Date_formation'];
+            $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['NbrJour_formation']." day");
             echo 
             "
             <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
@@ -108,15 +119,15 @@
             ";
             echo $valeur['nom_formation'];
             if($valeur['Date_formation']>=date("Y-m-d")) {
-                pageFormations($valeur,$page);
+                pageFormations($valeur,$page,$dateFinale);
           
                 ?>
-                    <form style="right:0;top:0;" action="vues/update.php" method="POST" id="form<?php echo $valeur['id_Formation'];?>">
+                    <form style="position:relative; left:640px; bottom:38px;" action="vues/update.php" method="POST" id="form<?php echo $valeur['id_Formation'];?>">
                         <div>
                             <input type="hidden" name="idFormation" value="<?php echo $valeur['id_Formation'];?>">
                         </div>
                         <div>
-                            <input class="btn couleurSinscrire" type="submit" value="S'inscrire à cette formation">
+                            <input class="btn" style="background-color: rgba(44, 156, 164, 0.8); color:white;" type="submit" value="S'inscrire à cette formation">
                         </div> 
                     </form>                                    
                     </div>
@@ -135,6 +146,8 @@
         $page = "historique";
         foreach ($data as $valeur) 
         {
+            $dateFinale = $valeur['Date_formation'];
+            $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['NbrJour_formation']." day");
             echo 
             "
             <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
@@ -142,7 +155,7 @@
             ";
             
             echo $valeur['nom_formation'];
-            pageFormations($valeur,$page);
+            pageFormations($valeur,$page,$dateFinale);
             echo "
                     </div>
                 </div>
@@ -202,7 +215,7 @@
                             <input type='hidden' value='".$valeur['id_Salarie']."' name='identifiantSalarie'>
                             <input type='submit' value='Valider'>
                         </form> 
-                    ";}?>                                   
+                    ";}?>                                
                 </div>
             </div>
         <?php

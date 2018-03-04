@@ -165,7 +165,7 @@
         $prepRequete->bindValue(':id',$id);
         $prepRequete->bindValue(':nom',$nom);
         $execRequete = $prepRequete->execute();
-        $url = "index.php";
+        $url = "../index.php";
         rediriger($url);
     }
 

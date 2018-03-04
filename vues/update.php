@@ -2,6 +2,7 @@
 <html>
     <?php
         include_once("../dataAccessCRUD/formations.php");
+        include_once("../dataAccessCRUD/identification.php")
     ?>
 <head>
     <meta charset="utf-8" />
@@ -16,7 +17,8 @@
 
     <?php
         $connexion = connexion();
-        $requete = "update participer set statut = '2' where participer.id_Salarie = :nom and participer.id_Formation = :id";
+        if(chef($_COOKIE["moncookie"])) $requete = "update participer set statut = '1' where participer.id_Salarie = :nom and participer.id_Formation = :id";
+        else $requete = "update participer set statut = '2' where participer.id_Salarie = :nom and participer.id_Formation = :id";
         $prepRequete = $connexion->prepare($requete);
         $prepRequete->bindValue(':id',$_POST["idFormation"]);
         $prepRequete->bindValue(':nom',$_COOKIE["moncookie"]);
