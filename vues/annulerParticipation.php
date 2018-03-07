@@ -13,8 +13,10 @@
 <body>
 
     <?php
-        if($_POST["submit"] == "Annuler ma participation à cette formation")annulerParticipation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
-        else ancienneFormation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
+        $index = "../index.php";
+        if($_POST["submit"] == "Annuler la participation")annulerParticipation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
+        else if($_POST["submit"]=="Classer cette formation")ancienneFormation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
+        else rediriger($index);
     ?>
 
 </body>

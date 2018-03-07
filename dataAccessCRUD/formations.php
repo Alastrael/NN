@@ -26,6 +26,22 @@
      * @param [string] $id
      * @return void
      */
+
+    function pdfFormations($id){
+        $pdo = connexion();
+        
+        $requete = "select * from formation where id_Formation = :id";
+        
+        $prepReq = $pdo->prepare($requete);
+        $prepReq->BindValue(':id',$id);
+        
+        $execPrepReq = $prepReq->execute();
+        
+        $data = $prepReq->fetchAll();
+        
+        return $data;
+    }
+    
     function nomFormation($id){
 
         $pdo = connexion();
@@ -165,7 +181,7 @@
         $prepRequete->bindValue(':id',$id);
         $prepRequete->bindValue(':nom',$nom);
         $execRequete = $prepRequete->execute();
-        $url = "../index.php";
+        $url = "./offres.php";
         rediriger($url);
     }
 

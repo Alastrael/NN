@@ -26,7 +26,7 @@
 </head>
 <body>
 
-        <?php
+     <?php
         $_COOKIE["nomPage"] = "historique";
         include_once("dataAccessCRUD/redirectionCookies.php");
         include_once("vues/header.php");

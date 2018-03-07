@@ -30,12 +30,21 @@
 </head>
 <body>
 
+
     <?php
         $_COOKIE["nomPage"] = "equipe";
         include_once("dataAccessCRUD/redirectionCookies.php");
         include_once("vues/header.php");
+    ?>
+    <div>
+    <?php
         include_once("vues/landing_equipe.php");
     ?>
+    </div>
+    <?php    
+        include_once("vues/footer.php"); 
+    ?>
+
 
 </body>
 </html>
