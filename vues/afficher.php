@@ -63,7 +63,7 @@
                     
             
         <?php
-    }//ferme la fonciton pageFormations
+    }//ferme la fonction pageFormations
 
     function nomDeFormation(){
         include_once("dataAccessCRUD/idFormation.php");
@@ -76,9 +76,7 @@
             $dateFinale = $valeur['Date_formation'];
             $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['NbrJour_formation']." day");
             
-            //if($dateFinale<=date("Y-m-d")) {
-                echo 
-            "
+                echo "
                 <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
                 .$valeur['id_Formation']."' style='background-color: "
                 .(($valeur['statut']=='2') ? 'rgba(152, 153, 154, 0.3)':'').";margin-top:1%;' aria-expanded='false' aria-controls='collapseExample'>
@@ -89,7 +87,7 @@
 
                 pageFormations($valeur,$page,$dateFinale);
                 echo "
-                            <form style='position:relative; left:0px; bottom:54px;' action='vues/annulerParticipation.php' method='POST' id='".$valeur['id_Salarie']."'>
+                            <form style='position:relative; left:70px; bottom:54px; width:90%;' action='vues/annulerParticipation.php' method='POST' id='".$valeur['id_Salarie']."'>
                                 <div>
                                     <input type='hidden' value='".$valeur['id_Formation']."' name='identifiantParticipation'>
                                 </div>";
@@ -97,9 +95,9 @@
                     <?php
                         if($valeur['Date_formation']>=date("Y-m-d")) echo "
                         <div>
-                            <input class='btn btn-primary' style='background-color: rgba(44, 156, 164, 0.8); color:white; position:relative; left:650px;'
-                             onclick='alert(".$valeur['nom_formation'].
-                            ")' type='submit' name='submit' value='Annuler la participation'>
+                            <input class='btn btn-primary' style='background-color: rgba(44, 156, 164, 0.8); color:white; position:relative; left:595px;'
+                             onclick='alert('Annulation de la ".$valeur['nom_formation'].
+                            "')' type='submit' name='submit' value='Annuler la participation'>
                         </div>";
                         else echo "
                         <div>
@@ -110,11 +108,8 @@
                             </form>
                         </div>
                     </div>
-                </div>
-            
+                </div>   
             <?php
-            /*}
-            else ancienneFormation($_COOKIE['moncookie'],$valeur['id_Formation']);*/
         }//ferme le foreach
     }//ferme la fonction nomDeFormations
 
@@ -135,23 +130,23 @@
                 pageFormations($valeur,$page,$dateFinale);
           
                 ?>
-                    <form style="position:relative; left:0px; bottom:54px;" action="vues/update.php" method="POST" id="form<?php echo $valeur['id_Formation'];?>">
+                    <form style="position:relative; left:70px; bottom:54px;" action="vues/update.php" method="POST" id="form<?php echo $valeur['id_Formation'];?>">
                         <div>
                             <input type="hidden" name="idFormation" value="<?php echo $valeur['id_Formation'];?>">
                         </div>
                         <div>
-                            <input class="btn" style="background-color: rgba(44, 156, 164, 0.8); color:white; position:relative; left:650px;" type="submit" value="S'inscrire à cette formation">
+                            <input class="btn" style="background-color: rgba(44, 156, 164, 0.8); color:white; position:relative; left:575px;" type="submit" value="S'inscrire à cette formation">
                         </div> 
                     </form>                                    
                     </div>
                 </div>
             </div>
             <?php
-            }
-            else {
-                //  ancienneFormation($_COOKIE['moncookie'],$valeur['id_Formation']);
-            }
-        }//ferme le foreachs
+            }            
+        }//ferme le foreach
+        if(count($data)==0){
+            echo "<h1 class='text-center'>Aucune offre disponible.</h1>";
+        }
     }//ferme la fonction OffresFormations
     
     function historiqueDesFormations(){
@@ -164,7 +159,7 @@
             echo 
             "
             <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
-            .$valeur['id_Formation']."' aria-expanded='false' aria-controls='collapseExample'>
+            .$valeur['id_Formation']."' style='margin-top:1%;' aria-expanded='false' aria-controls='collapseExample'>
             ";
             
             echo $valeur['nom_formation'];
@@ -185,7 +180,7 @@
             echo 
             "
             <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
-            .$valeur['id_Salarie']."' aria-expanded='false' aria-controls='collapseExample'>
+            .$valeur['id_Salarie']."' style='margin-top:1%;' aria-expanded='false' aria-controls='collapseExample'>
             ";
             echo $valeur['nom_Salarie']; 
             ?>
@@ -211,23 +206,23 @@
                     <?php if($message != ""){ echo"
                     <form action='vues/_updateCHEF.php' method='POST' id='".$valeur['id_Salarie']."'>
                         <div class='form-group'>
-                            <label for='exampleFormControlSelect1'>Selectionnez la formation que vous autorisez : </label>
-                            <select class='form-control' name='identifiantFormation'>";
-                            foreach ($formations as $formation) {
-                                echo "<option style='margin-right:-10%;' value='".$formation['id_Formation']."'>".$formation['nom_formation']."</option>";
-                            }
-                            echo "     
-                            </select>
-                            </div>
-                            <div class='form-group'>
-                                <select class='form-control' name='decision'>
-                                    <option value='accepter'>accepter</option>;  
-                                    <option value='refuser'>refuser</option>; 
+                            <label for='exampleFormControlSelect1'>Selectionnez la formation que vous voulez gérer : </label>
+                            <div style='display:inline;'>
+                                <select class='form-control' name='identifiantFormation' style='width:30%;'>";
+                                    foreach ($formations as $formation) {
+                                        echo "<option style='margin-right:-10%;' value='".$formation['id_Formation']."'>".$formation['nom_formation']."</option>";
+                                    }
+                                    echo "     
+                                </select>                          
+                                <select class='form-control' name='decision' style='width:30%;'>
+                                    <option value='accepter'>Accepter la demande</option>;  
+                                    <option value='refuser'>Refuser la demande</option>; 
                                 </select>
                             </div>
-                            <input type='hidden' value='".$valeur['id_Salarie']."' name='identifiantSalarie'>
-                            <input type='submit' value='Valider'>
-                        </form> 
+                        </div>
+                        <input type='hidden' value='".$valeur['id_Salarie']."' name='identifiantSalarie'>
+                        <input class='btn btn-primary' style='background-color:rgba(44, 156, 164, 0.8);' type='submit' value='Valider'>
+                    </form> 
                     ";}?>                                
                 </div>
             </div>
