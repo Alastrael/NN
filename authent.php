@@ -57,22 +57,17 @@
                 </form>
                 </div>
             </div>
-            <!--<div class="row justify-content-center">
-                <h3>Quelle est l'utilité de ce site ?</h3>
-                <p>
-                    Via l'interface intuitive de ce site, vous pourrez soumettre des demandes d'affectation à certaines formations. Vos choix de formations seront
-                    acceptées ou non par votre chef d'équipe.<br>Vous pourrez également consulter les formations que vous avez déjà effectuées.
-                </p>
-            </div>!-->
 
             <?php
                 //Processus de vérification permettant la connexion
                 if (isset($_POST['boutonConnexion'])) {
                     $id = $_POST['identifiant'];
-                    $mdp = $_POST['motdepasse'];
+                    $mdp =  md5($_POST['motdepasse']);
                     if(identifi($id, $mdp)) {
+                        $identifiant = recupID($id,$mdp);
                         setcookie("moncookie",$id);
                         setcookie("nomPage","authent");
+                        setcookie("id",$identifiant['id_Salarie']);
                         $url = "index.php";
                         redirection($url);
                         exit();

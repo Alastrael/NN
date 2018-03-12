@@ -8,7 +8,7 @@
     function connexion(){
 
         $host = "localhost";
-        $dbname = "bdd_m2l";
+        $dbname = "bdd-m2l";
         $user = "root";
         $mdp = "";
 
@@ -42,14 +42,14 @@
         return $data;
     }
     
-    function nomFormation($id){
+    function nomFormation($nom){
 
         $pdo = connexion();
 
-        $requete = "select * from salarie natural join participer natural join formation where (statut=1 or statut=2) and salarie.id_Salarie = :id";
+        $requete = "select * from salarie natural join participer natural join formation where (statut=1 or statut=2) and salarie.nom_Salarie = :nom";
 
         $prepReq = $pdo->prepare($requete);
-        $prepReq->BindValue(':id',$id);
+        $prepReq->BindValue(':nom',$nom);
 
         $execPrepReq = $prepReq->execute();
 
@@ -67,7 +67,7 @@
      */
     function offreFormationDispo($id){
         $dbh = connexion();
-        $requete = "select * from salarie natural join participer natural join formation where statut='0' and salarie.id_Salarie = :id";
+        $requete = "select * from formation";
         
         $prepReq = $dbh->prepare($requete);
         $prepReq->BindValue(':id',$id);
@@ -93,9 +93,9 @@
         return $data;
     }
 
-    function formationsFinie($id){
+    function formationsFinie($id,$dateFinale){
         $dbh = connexion();
-        $requete = "select * from salarie natural join participer natural join formation where statut='5' and salarie.id_Salarie = :id";
+        $requete = "select * from formation where  natural join participer natural join formation where statut='5' and salarie.id_Salarie = :id";
         $prepReq = $dbh->prepare($requete);
         $prepReq->BindValue(':id',$id);
 
@@ -130,11 +130,11 @@
      * @param [string] $id
      * @return void
      */
-    function nomSalarie($id) {
+    function nomSalarie($nom) {
         $connection = connexion();
-        $requete = "select nom_salarie from salarie where id_Salarie = :id";
+        $requete = "select nom_Salarie from salarie where nom_Salarie = :nom";
         $prepReq = $connection->prepare($requete);
-        $prepReq->BindValue(':id',$id);
+        $prepReq->BindValue(':nom',$nom);
         $execPrepReq = $prepReq->execute();
         $tab = $prepReq->fetch();
         return $tab[0];
@@ -163,23 +163,23 @@
         rediriger($url);
     }
 
-    function annulerParticipation($id,$nom){
+    function annulerParticipation($formation){
         $connexion = connexion();
-        $requete = "update participer set statut ='0' where participer.id_Salarie=:nom and participer.id_Formation=:id";
+        $requete = "DELETE FROM participer WHERE participer.id_Salarie = :id AND participer.id_Formation = :formation";
         $prepRequete = $connexion->prepare($requete);
-        $prepRequete->bindValue(':id',$id);
-        $prepRequete->bindValue(':nom',$nom);
+        $prepRequete->bindValue(':id',$_COOKIE["id"]);
+        $prepRequete->bindValue(':formation',$formation);
         $execRequete = $prepRequete->execute();
         $url = "../offres.php";
         rediriger($url);
     }
 
-    function ancienneFormation($id, $nom) {
+    function ancienneFormation($formation) {
         $connexion = connexion();
-        $requete = "update participer set statut ='5' where participer.id_Salarie=:nom and participer.id_Formation=:id";
+        $requete = "update participer set statut ='5' where participer.id_Salarie=:idSalarie and participer.id_Formation=:formation";
         $prepRequete = $connexion->prepare($requete);
-        $prepRequete->bindValue(':id',$id);
-        $prepRequete->bindValue(':nom',$nom);
+        $prepRequete->bindValue(':idSalarie',$_COOKIE["id"]);
+        $prepRequete->bindValue(':formation',$nom);
         $execRequete = $prepRequete->execute();
         $url = "./offres.php";
         rediriger($url);

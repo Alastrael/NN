@@ -1,9 +1,9 @@
 <?php    
 //pense bete : creer un bouton qui permettrait de pouvoir valider la formation, il se mettrait disabled tant que la date + durée de la formation est inférieure à la current date
     function pageFormations($valeur,$page,$dateFinale){
-        $dateFinale = date_create($valeur['Date_formation']);
+        $dateFinale = date_create($valeur['datedebut_Formation']);
         //$dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['NbrJour_formation']." day");
-        date_add($dateFinale,date_interval_create_from_date_string($valeur['NbrJour_formation']));
+        date_add($dateFinale,date_interval_create_from_date_string($valeur['nbrJour_Formation']));
         ?>
         <i class='fa fa-arrow-circle-down fa-spin' aria-hidden='true'></i>
             </a> 
@@ -18,7 +18,7 @@
                                 else {
                                     if($page == "offres") echo "Disponible";
                                     else if ($valeur['statut']=='2') echo "En attente de validation";
-                                    else if($valeur['Date_formation']<date("Y-m-d") && $dateFinale>date("Y-m-d"))echo "En cours";
+                                    else if($valeur['datedebut_Formation']<date("Y-m-d") && $dateFinale>date("Y-m-d"))echo "En cours";
                                     else if($dateFinale<date("Y-m-d"))echo "A classer";
                                     else echo "Acceptée";
                                     
@@ -28,27 +28,27 @@
                         </tr>
                         <tr>
                             <th scope="row">Description de la formation</th>
-                            <td><?php echo $valeur['contenu_formation'] ?></td>
+                            <td><?php echo $valeur['contenu_Formation'] ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Début de la formation (Année - Mois - Jours)</th>
-                            <td><?php echo $valeur['Date_formation']?></td>
+                            <td><?php echo $valeur['datedebut_Formation']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Nombre d'heures</th>
-                            <td><?php echo $valeur['Duree_formation']?></td>
+                            <td><?php echo $valeur['nbrheures_Formation']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Nombre de jours de formation</th>
-                            <td><?php echo $valeur['NbrJour_formation']?></td>
+                            <td><?php echo $valeur['nbrJour_Formation']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Lieu de formation</th>
-                            <td><?php echo $valeur['lieu_formation']?></td>
+                            <td><?php echo $valeur['lieu_Formation']?></td>
                         </tr>
                         <tr>
                             <th scope="row">Prérequis pour la formation</th>
-                            <td><?php echo $valeur['prerequis_formation']?></td>
+                            <td><?php echo $valeur['prerequis_Formation']?></td>
                         </tr>
                         </tbody>
                     </table>
@@ -73,8 +73,8 @@
 
         foreach ($data as $valeur) 
         {
-            $dateFinale = $valeur['Date_formation'];
-            $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['NbrJour_formation']." day");
+            $dateFinale = $valeur['datedebut_Formation'];
+            $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['nbrJour_Formation']." day");
             
                 echo "
                 <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
@@ -82,7 +82,7 @@
                 .(($valeur['statut']=='2') ? 'rgba(152, 153, 154, 0.3)':'').";margin-top:1%;' aria-expanded='false' aria-controls='collapseExample'>
                 ";
             
-                echo $valeur['nom_formation'];
+                echo $valeur['nom_Formation'];
                 if($valeur['statut']=='2') echo "=> en attente de validation";
 
                 pageFormations($valeur,$page,$dateFinale);
@@ -93,10 +93,10 @@
                                 </div>";
                     ?>
                     <?php
-                        if($valeur['Date_formation']>=date("Y-m-d")) echo "
+                        if($valeur['datedebut_Formation']>=date("Y-m-d")) echo "
                         <div>
                             <input class='btn btn-primary' style='background-color: rgba(44, 156, 164, 0.8); color:white; position:relative; left:595px;'
-                             onclick='alert('Annulation de la ".$valeur['nom_formation'].
+                             onclick='alert('Annulation de la ".$valeur['nom_Formation'].
                             "')' type='submit' name='submit' value='Annuler la participation'>
                         </div>";
                         else echo "
@@ -117,16 +117,16 @@
         $data = offreFormationDispo($_COOKIE["moncookie"]);
         $page = "offres";
         foreach ($data as $valeur) {
-            $dateFinale = $valeur['Date_formation'];
-            $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['NbrJour_formation']." day");
+            $dateFinale = $valeur['datedebut_Formation'];
+            $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['nbrJour_Formation']." day");
             
-            if($valeur['Date_formation']>=date("Y-m-d")) {
+            if($valeur['datedebut_Formation']>=date("Y-m-d")) {
                 echo 
                 "
                 <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
                 .$valeur['id_Formation']."' style='margin-top:1%;' aria-expanded='false' aria-controls='collapseExample'>
                 ";
-                echo $valeur['nom_formation'];
+                echo $valeur['nom_Formation'];
                 pageFormations($valeur,$page,$dateFinale);
           
                 ?>
@@ -144,25 +144,25 @@
             <?php
             }            
         }//ferme le foreach
-        if(count($data)==0){
+        if(count($data)==0 || $data == null){
             echo "<h1 class='text-center'>Aucune offre disponible.</h1>";
         }
     }//ferme la fonction OffresFormations
     
     function historiqueDesFormations(){
-        $data = formationsFinie($_COOKIE["moncookie"]);
+        $data = formationsFinie($_COOKIE["id"]);
         $page = "historique";
         foreach ($data as $valeur) 
         {
-            $dateFinale = $valeur['Date_formation'];
-            $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['NbrJour_formation']." day");
+            $dateFinale = $valeur['datedebut_Formation'];
+            $dateFinale = strtotime(date("Y-m-d", strtotime($dateFinale)) . " +".$valeur['NbrJour_Formation']." day");
             echo 
             "
             <a class='list-group-item list-group-item-action text-center' data-toggle='collapse' href='#"
             .$valeur['id_Formation']."' style='margin-top:1%;' aria-expanded='false' aria-controls='collapseExample'>
             ";
             
-            echo $valeur['nom_formation'];
+            echo $valeur['nom_Formation'];
             pageFormations($valeur,$page,$dateFinale);
             echo "
                     </div>
@@ -195,7 +195,7 @@
                                 $message = "";
                                 foreach ($formations as $valeur) {
                                     if(count($formations)>=1){
-                                        echo "- ".$valeur['nom_formation']."<br>";
+                                        echo "- ".$valeur['nom_Formation']."<br>";
                                         $message = "fait";
                                     } 
                                 }
@@ -210,7 +210,7 @@
                             <div style='display:inline;'>
                                 <select class='form-control' name='identifiantFormation' style='width:30%;'>";
                                     foreach ($formations as $formation) {
-                                        echo "<option style='margin-right:-10%;' value='".$formation['id_Formation']."'>".$formation['nom_formation']."</option>";
+                                        echo "<option style='margin-right:-10%;' value='".$formation['id_Formation']."'>".$formation['nom_Formation']."</option>";
                                     }
                                     echo "     
                                 </select>                          

@@ -13,18 +13,18 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <h1>exists</h1>
+    <h1><?php echo $_COOKIE["id"] ?></h1>
 
     <?php
         $connexion = connexion();
-        if(chef($_COOKIE["moncookie"])) $requete = "update participer set statut = '1' where participer.id_Salarie = :nom and participer.id_Formation = :id";
-        else $requete = "update participer set statut = '2' where participer.id_Salarie = :nom and participer.id_Formation = :id";
+        if(chef()) $requete = "INSERT INTO participer (id_Salarie, id_Formation, statut) VALUES (:salarie, :formation,2)";
+        else $requete = "INSERT INTO participer (id_Salarie, id_Formation, statut) VALUES (:salarie, :formation,1)";
         $prepRequete = $connexion->prepare($requete);
-        $prepRequete->bindValue(':id',$_POST["idFormation"]);
-        $prepRequete->bindValue(':nom',$_COOKIE["moncookie"]);
+        $prepRequete->bindValue(':formation',$_POST["idFormation"]);
+        $prepRequete->bindValue(':salarie',$_COOKIE["id"]);
         $execRequete = $prepRequete->execute();
 
-        $url = "../offres.php";
+        $url = "../index.php";
         rediriger($url);
     ?>
 

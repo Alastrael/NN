@@ -14,8 +14,8 @@
 
     <?php
         $index = "../index.php";
-        if($_POST["submit"] == "Annuler la participation")annulerParticipation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
-        else if($_POST["submit"]=="Classer cette formation")ancienneFormation($_POST['identifiantParticipation'], $_COOKIE['moncookie']);
+        if($_POST["submit"] == "Annuler la participation")annulerParticipation($_POST['identifiantParticipation']);
+        else if($_POST["submit"]=="Classer cette formation")ancienneFormation($_POST['identifiantParticipation']);
         else rediriger($index);
     ?>
 
