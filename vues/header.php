@@ -11,8 +11,8 @@
         </div>
         <div class="row col-md-2" style="color:white;">
             <div style="margin-top:5%;margin-right:5%;">
-                <button type="button" style="background-color: rgba(223, 67, 56, 0.7);" 
-                class="btn btn-danger" onclick="deco()">Déconnexion</button>
+                <button type="button" class="btn btn-primary btn-danger redButton" 
+                onclick="deco()">Déconnexion</button>
             </div>
         </div>
         <div class="col-md-auto" style="color:white;text-align:center;">

@@ -6,7 +6,7 @@
             <div id="formations" class="justifiy-content-center" style="margin-left: 25%;">
                 <div class="list-group justifiy-content-center" style="width: 900px;">
                     <?php      
-                        OffresFormations();
+                        offresFormations();
                     ?>
                 </div>
             </div>
